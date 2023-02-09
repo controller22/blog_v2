@@ -15,12 +15,12 @@ spring:
     driver-class-name: org.h2.Driver
     username: sa
     password: 
-#   sql:
-#     init:
-#       schema-locations:
-#       - classpath:db/table.sql
-#       data-locations:
-#       - classpath:db/data.sql
+  sql:
+    init:
+      schema-locations:
+      - classpath:db/table.sql
+      data-locations:
+      - classpath:db/data.sql
   h2:
     console:
       enabled: true
@@ -28,8 +28,8 @@ spring:
     ansi:
       enabled: always
 
-# mybatis:
-#   mapper-locations:
-#   - classpath:mapper/**.xml
-#   configuration:
-#     map-underscore-to-camel-case: true
+mybatis:
+  mapper-locations:
+  - classpath:mapper/**.xml
+  configuration:
+    map-underscore-to-camel-case: true
