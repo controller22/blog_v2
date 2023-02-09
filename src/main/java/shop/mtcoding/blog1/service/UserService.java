@@ -27,6 +27,7 @@ public class UserService {
             throw new CustomException("회원가입실패");
         }
     }
+
     @Transactional(readOnly = true)
     public User 로그인(LoginReqDto loginReqDto) {
         User principal = userRepository.findByUsernameAndPassword(
