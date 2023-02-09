@@ -5,14 +5,14 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-public class HtmlParse {
+public class HtmlParser {
     public static String getThumbnail(String html) {
         String thumbnail;
         Document doc = Jsoup.parse(html);
         Elements els = doc.select("img");
 
         if (els.size() == 0) {
-            thumbnail = "/images/1";
+            thumbnail = "/images/123.png";
         } else {
             Element el = els.get(0);
             thumbnail = el.attr("src");

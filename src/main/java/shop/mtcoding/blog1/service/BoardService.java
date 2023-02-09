@@ -10,6 +10,7 @@ import shop.mtcoding.blog1.dto.board.BoardReq.BoardUpdateReqDto;
 import shop.mtcoding.blog1.handler.ex.CustomApiException;
 import shop.mtcoding.blog1.model.Board;
 import shop.mtcoding.blog1.model.BoardRepository;
+import shop.mtcoding.blog1.util.HtmlParser;
 
 @Transactional(readOnly = true)
 @Service
@@ -19,11 +20,12 @@ public class BoardService {
 
     @Transactional
     public void 글쓰기(BoardSaveReqDto boardSaveReqDto, int userId) {
+        String thumbnail = HtmlParser.getThumbnail(boardSaveReqDto.getContent());
 
         int result = boardRepository.insert(
                 boardSaveReqDto.getTitle(),
                 boardSaveReqDto.getContent(),
-                "",
+                thumbnail,
                 userId);
         if (result != 1) {
             throw new CustomApiException("글쓰기 실패", HttpStatus.INTERNAL_SERVER_ERROR);
