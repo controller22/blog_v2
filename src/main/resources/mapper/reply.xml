@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="shop.mtcoding.blog1.model.ReplyRepository">
+
+    <select id="findByBoardIdWithUser" resultType="shop.mtcoding.blog1.dto.reply.ReplyResp$ReplyDetailRespDto">
+        select rt.id, rt.comment, rt.user_id, rt.board_id, ut.username
+        from reply_tb rt
+        inner join user_tb ut
+        on rt.user_id = ut.id
+        where rt.board_id = #{boardId}
+    </select>
+
+    <select id="findAll" resultType="shop.mtcoding.blog1.model.Reply">
+        select * from reply_tb
+    </select>
+
+    <select id="findById" resultType="shop.mtcoding.blog1.model.Reply">
+        select * from reply_tb where id = #{id}
+    </select>    
+
+    <insert id="insert">
+        insert into reply_tb (comment, user_id, board_id, created_at) values(#{comment}, #{userId}, #{boardId}, now())
+    </insert>    
+
+    <delete id="deleteById" >
+        delete from reply_tb where id = #{id}
+    </delete>    
+
+    <update id="updateById" >
+        update reply_tb set title= #{title},content= #{content} where id = #{id}
+    </update>    
+</mapper>
